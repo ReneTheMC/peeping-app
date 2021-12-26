@@ -21,25 +21,25 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
               <div class="logo d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a class="navbar-brand text-primary d-flex align-items-center" href="{% url 'home' %}">Social Network Django</a>
+                <a class="navbar-brand me-5 text-primary d-flex align-items-center" href="{% url 'home' %}">Social Network Django</a>
+                <form class="ms-5 col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
                 <ul class="ms-5 nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                   <li><a href="#" class="nav-link px-2 link-dark">Feed</a></li>
                   <li><a href="#" class="nav-link px-2 link-dark">Explore</a></li>
                   <li><a href="#" class="nav-link px-2 link-dark">New Post</a></li>
                   <li><a href="#" class="nav-link px-2 link-dark">Activity</a></li>
                 </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                </form>
-                <div class="ms-5 dropdown text-end">
-                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="42" height="42" class="rounded-circle">
+                <div class="dropdown text-end">
+                  <a href="#" class="me-4 d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img style="object-fit: cover;" src="{{ request.user.profile.avatar.url }}" alt="user avatar" width="42" height="42" class="rounded-circle">
                   </a>
                   <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Liked Posts</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Sign out</a></li>
                   </ul>
                 </div>
               </div>
@@ -71,6 +71,7 @@
                     <h5 class="text-muted">
                       Suggestions For You
                     </h5>
+                    <hr>
                 </div>
             </div>
             <div class="col-md-1"></div>
