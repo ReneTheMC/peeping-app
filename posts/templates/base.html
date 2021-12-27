@@ -22,13 +22,14 @@
             <div class="col-md-10">
               <div class="logo d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a class="navbar-brand me-5 text-primary d-flex align-items-center" href="{% url 'home' %}">Social Network Django</a>
+                {% if request.user.is_authenticated %}
                 <form class="ms-5 col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                   <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
                 <ul class="ms-5 nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                   <li><a href="#" class="nav-link px-2 link-dark">Feed</a></li>
                   <li><a href="#" class="nav-link px-2 link-dark">Explore</a></li>
-                  <li><a href="#" class="nav-link px-2 link-dark">New Post</a></li>
+                  <li><a href="{% url 'create_post' %}" class="nav-link px-2 link-dark">New Post</a></li>
                   <li><a href="#" class="nav-link px-2 link-dark">Activity</a></li>
                 </ul>
                 <div class="dropdown text-end">
@@ -36,18 +37,20 @@
                     <img style="object-fit: cover;" src="{{ request.user.profile.avatar.url }}" alt="user avatar" width="42" height="42" class="rounded-circle">
                   </a>
                   <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' request.user.username %}">Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
                     <li><a class="dropdown-item" href="#">Liked Posts</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Sign out</a></li>
                   </ul>
                 </div>
               </div>
+              {% endif %}
             </div>
             <div class="col-md-1"></div>
           </div>
         </div>
-    </header>
+      </header>
     <main class="container">
         <div class="row">
           <div class="col-md-1"></div>
@@ -65,6 +68,7 @@
                     {% block content %}{% endblock %}
                 </div>
             </div>
+            {% if request.user.is_authenticated %}
             <!-- sidebar -->
             <div class="col-md-3">
                 <div class="p-3 m-3 sticky-top">
@@ -74,6 +78,7 @@
                     <hr>
                 </div>
             </div>
+            {% endif %}
             <div class="col-md-1"></div>
         </div>
     </main>

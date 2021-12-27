@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from django.contrib.auth.models import User
+
+from .forms import UserRegisterForm, EditAvatarForm, EditInformationForm
 
 
 def register(request):
@@ -18,5 +20,26 @@ def register(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'profile.html')
+def profile(request, username):
+    user = User.objects.filter(username=username).first()
+    return render(request, 'profile.html', context={'user':user})
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        avatar_form = EditAvatarForm(request.POST, request.FILES, instance=request.user.profile)
+        information_form = EditInformationForm(request.POST, instance=request.user)
+        if avatar_form.is_valid() and information_form.is_valid():
+            avatar_form.save()
+            information_form.save()
+            return redirect('profile', username=request.user.username)
+    else:
+        avatar_form = EditAvatarForm(instance=request.user.profile)
+        information_form = EditInformationForm(instance=request.user)
+    
+    context = {
+        'avatar_form':avatar_form,
+        'information_form':information_form
+    }
+    return render(request, 'edit_profile.html', context)

@@ -1,29 +1,40 @@
-<div class="bg-white border">
+{% for post in posts %}
+<div class="bg-white border mb-4">
     <div class="row p-3">
         <!-- user avatar -->
         <div class="col-md-1">
-            <img style="object-fit: cover;" class="rounded-circle" width="60" height="60" src="" alt="">
+            <img style="object-fit: cover;" class="rounded-circle" width="60" height="60" src="{{ post.user.profile.avatar.url }}" alt="">
         </div>
         <!-- username -->
         <div class="col-md-1 ms-3 mt-3">
-            <b>marshall.sg</b>
+            <b><a style="text-decoration: none;" class="text-primary" href="{% url 'profile' post.user.username %}">{{ post.user.username }}</b></a>
         </div>
     </div>
     <!-- post image -->
-    <img class="w-100 h-90" src="" alt="">
+    <img style="object-fit: cover;" class="w-100 h-90" src="{{post.image.url}}" alt="">
     <div class="ps-3 pe-3 pb-3 mt-3">
         <!-- like and comment icons -->
-        <div class="mb-2">
-            <i style="font-size: 30px;" class="material-icons">&#xe87e;</i>
-            <i style="font-size: 30px;" class="material-icons">&#xe0cb;</i>
-        </div>
-        <!-- likes number -->
-        <div class="mb-2">
-            liked by<b> marshall.sg </b>and<b> 23 others</b> 
+        <div class="mb-3">
+            {% if request.user.is_authenticated %}
+              {% if not can_like %}
+                <a style="text-decoration: none;" href="{% url 'post_like' post.id %}" >
+                  <i style="font-size: 30px;vertical-align:middle;" class="material-icons">&#xe87e;</i>
+                </a>
+                <b>{{ post.likes_counter }}</b>
+              {% else %}
+                <a style="text-decoration: none;" href="{% url 'post_dislike' post.id %}">
+                  <i style="font-size: 30px;vertical-align:middle;" class="material-icons">&#xe87d;</i>
+                </a>
+                <b>{{ post.likes_counter }}</b>
+            {% endif %}
+            {% else %}
+            {% endif %}
         </div>
         <!-- caption -->
-        <div class="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet praesentium corrupti iusto laborum molestias debitis labore consequatur at natus nobis porro odio consequuntur odit accusantium, rem libero sapiente necessitatibus distinctio
+        <div>
+            {{ post.caption }}
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat ut, libero autem nihil eaque quae veritatis quisquam recusandae reprehenderit! Placeat officiis rem assumenda sed laudantium facilis, voluptatem nam voluptate obcaecati?
         </div>
     </div>
 </div>
+{% endfor %}
