@@ -7,7 +7,7 @@ from .models import Post, Vote
 
 @login_required
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-date_posted').all()
     return render(request, 'home.html', context={'posts':posts})
 
 
