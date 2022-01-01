@@ -28,6 +28,11 @@ class EditAvatarForm(forms.ModelForm):
         model = Profile
         fields = ['avatar']
 
+    def __init__(self, *args, **kwargs):
+        super(EditAvatarForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
 
 class EditInformationForm(forms.ModelForm):
     class Meta:
