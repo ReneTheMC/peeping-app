@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
-
 from .forms import CreatePostForm, EditPostForm
 from .models import Post
 
@@ -72,3 +71,10 @@ def post_like(request):
                 liked = True
     ctx = {"likes_count":content.total_likes, "liked":liked, "content_id":content_id}
     return HttpResponse(json.dumps(ctx), content_type='application/json')
+
+
+@login_required
+def search(request):
+    query = request.GET.get('q')
+    users =  User.objects.filter(username__icontains=query).all()
+    return render(request, 'users.html', {'users':users})

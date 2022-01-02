@@ -48,12 +48,13 @@
                 >Social Network Django</a
               >
               {% if request.user.is_authenticated %}
-              <form class="ms-5 col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+              <form class="ms-5 col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}">
                 <input
                   type="search"
                   class="form-control"
                   placeholder="Search..."
                   aria-label="Search"
+                  name="q"
                 />
               </form>
               <ul
@@ -149,8 +150,15 @@
         <!-- sidebar -->
         <div class="col-md-3">
           <div class="mt-4 pt-1 sticky-top">
-            <p class="text-muted mb-4">Suggestions For You</p>
-            {% block sidebar %}{% endblock %}
+
+            <div class="">
+              <span class="text-muted mt-1">
+                Suggestions For You
+              </span>
+            </div>
+            <div class="mt-4">
+              {% block sidebar %}{% endblock %}
+            </div>
           </div>
         </div>
         <div class="col-md-1"></div>
