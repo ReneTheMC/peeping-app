@@ -1,9 +1,6 @@
 {% extends "base.html" %} 
 {% load static %}
 {% block content %}
-<head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
 <div class="row bg-white border m-1 p-4">
   <div class="col-md-3">
     <img style="object-fit: cover" width="150" height="150" class="rounded-circle" src="{{ user.profile.avatar.url }}"/>
@@ -14,9 +11,9 @@
         {% if request.user == user %}
           <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary ms-3 mb-3">Edit Profile</a>
         {% elif check_following.follower != user %}
-        <a href="{% url 'follow' user.username %}" class="btn btn-primary ms-3 mb-2">Follow</a>
-        {% elif  check_following.follower == user   %}
-        <a href="{% url 'unfollow' user.username %}" class="btn btn-primary ms-3 mb-2">Unfollow</a>
+          <a href="{% url 'follow' user.username %}" class="btn btn-primary ms-3 mb-2">Follow</a>
+        {% else %}
+          <a href="{% url 'unfollow' user.username %}" class="btn btn-primary ms-3 mb-2">Unfollow</a>
         {% endif %}
       </div>
       <div class="mt-2">
@@ -25,7 +22,7 @@
         <span><b class="ms-5">{{ user.following.count }}</b> Following</span>
       </div>
       <div class="ms-5 mt-3">
-        this is my bio...
+        {{ user.profile.bio }}
       </div>
     </div>
   </div>

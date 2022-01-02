@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.http import Http404
 
+from posts.views import liked_posts
 from .forms import UserRegisterForm, EditAvatarForm, EditInformationForm
 from .models import Follow
 from posts.models import Post
@@ -28,17 +29,20 @@ def register(request):
 
 @login_required
 def profile(request, username):
+    # users to show in sidbar
     users = User.objects.all()
     user = User.objects.filter(username=username).first()
-    posts = Post.objects.filter(user=user).all()
-    already_liked = []
-    for post in posts:
-       if post.likes.filter(id=request.user.id).exists():
-           already_liked.append(post.id)
-    
+    # check if user has been followed or not | we get all following users 
     following = request.user.following
     check_following = following.filter(follower=user).first()
-    return render(request, 'profile.html', context={'check_following':check_following ,'user':user, 'posts':posts, 'already_liked':already_liked, 'users':users})
+    context = {
+        'check_following':check_following,
+        'user':user, 
+        'posts':user.posts.all(),
+        'already_liked':liked_posts(request),
+        'users':users
+    }
+    return render(request, 'profile.html', context)
 
 
 @login_required

@@ -26,7 +26,7 @@ class UserRegisterForm(UserCreationForm):
 class EditAvatarForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['avatar']
+        fields = ['avatar', 'bio']
 
     def __init__(self, *args, **kwargs):
         super(EditAvatarForm, self).__init__(*args, **kwargs)

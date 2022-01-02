@@ -44,7 +44,7 @@
             >
               <a
                 class="navbar-brand me-5 text-primary d-flex align-items-center"
-                href="{% url 'home' %}"
+                href="{% url 'explore' %}"
                 >Social Network Django</a
               >
               {% if request.user.is_authenticated %}
@@ -68,8 +68,8 @@
                   mb-md-0
                 "
               >
-                <li><a href="#" class="nav-link px-2 link-dark">Feed</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Explore</a></li>
+                <li><a href="{% url 'feed' %}" class="nav-link px-2 link-dark">Feed</a></li>
+                <li><a href="{% url 'explore' %}" class="nav-link px-2 link-dark">Explore</a></li>
                 <li>
                   <a
                     href="{% url 'create_post' %}"
@@ -78,7 +78,7 @@
                   >
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-2 link-dark">Activity</a>
+                  <a href="{% url 'profile' request.user.username %}" class="nav-link px-2 link-dark">Profile</a>
                 </li>
               </ul>
               <div class="dropdown text-end">
@@ -106,18 +106,11 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
                   <li>
-                    <a
-                      class="dropdown-item"
-                      href="{% url 'profile' request.user.username %}"
-                      >Profile</a
-                    >
-                  </li>
-                  <li>
                     <a class="dropdown-item" href="{% url 'edit_profile' %}"
                       >Edit Profile</a
                     >
                   </li>
-                  <li><a class="dropdown-item" href="#">Liked Posts</a></li>
+                  <li><a class="dropdown-item" href="{% url 'liked_posts' %}">Liked Posts</a></li>
                   <li>
                     <a
                       class="dropdown-item text-danger"

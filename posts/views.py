@@ -10,15 +10,42 @@ from .forms import CreatePostForm, EditPostForm
 from .models import Post
 
 
+
 @login_required
-def home(request):
+def explore(request):
     users = User.objects.all()
+    posts = Post.objects.order_by('-date_posted').all()
+    context = {'posts':posts, "already_liked":liked_posts(request), 'users':users}
+    return render(request, 'explore.html', context)
+
+
+@login_required
+def feed(request):
+    posts = []
+    following = request.user.following.all()
+    for user in following:
+        for post in user.follower.posts.all():
+            posts.append(post)
+    context = {'posts':posts, "already_liked":liked_posts(request)}
+    return render(request, 'explore.html', context)
+
+
+def liked_posts(request):
     posts = Post.objects.order_by('-date_posted').all()
     already_liked = []
     for post in posts:
        if post.likes.filter(id=request.user.id).exists():
            already_liked.append(post.id)
-    return render(request, 'home.html', context={'posts':posts, "already_liked":already_liked, 'users':users})
+    return already_liked
+
+
+@login_required
+def show_liked_posts(request):
+    posts = []
+    for post_id in liked_posts(request):
+        posts.append(Post.objects.filter(id=post_id).first())
+    context = {'posts':posts, "already_liked":liked_posts(request)}
+    return render(request, 'explore.html', context)
 
 
 @login_required 
@@ -29,7 +56,7 @@ def create_post(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            return redirect('home')
+            return redirect('explore')
     form = CreatePostForm()
     context = {'form':form, 'title':'New Post'}
     return render(request, 'create_post.html', context) 
@@ -54,7 +81,7 @@ def edit_post(request, post_id):
 def delete_post(request, post_id):
     post = Post.objects.filter(id=post_id, user=request.user).delete()
     messages.success(request, 'your post deleted successfully', 'danger')
-    return redirect('home')
+    return redirect('explore')
 
 
 @login_required
