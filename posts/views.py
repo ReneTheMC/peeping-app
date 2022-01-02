@@ -1,8 +1,11 @@
+import json
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-import json
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+
 
 from .forms import CreatePostForm, EditPostForm
 from .models import Post
@@ -10,12 +13,13 @@ from .models import Post
 
 @login_required
 def home(request):
+    users = User.objects.all()
     posts = Post.objects.order_by('-date_posted').all()
     already_liked = []
     for post in posts:
        if post.likes.filter(id=request.user.id).exists():
            already_liked.append(post.id)
-    return render(request, 'home.html', context={'posts':posts,"already_liked":already_liked})
+    return render(request, 'home.html', context={'posts':posts, "already_liked":already_liked, 'users':users})
 
 
 @login_required 

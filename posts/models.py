@@ -9,7 +9,7 @@ class Post(models.Model):
     caption = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    likes=models.ManyToManyField(User,blank=True, related_name='likes')
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
 
     @property
     def total_likes(self):
