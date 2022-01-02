@@ -143,7 +143,7 @@
         <!-- sidebar -->
         <div class="col-md-3">
           <div class="mt-4 pt-1 sticky-top">
-
+            {% if request.user.is_authenticated %}
             <div class="">
               <span class="text-muted mt-1">
                 Suggestions For You
@@ -153,6 +153,7 @@
               {% block sidebar %}{% endblock %}
             </div>
           </div>
+          {% endif %}
         </div>
         <div class="col-md-1"></div>
       </div>
