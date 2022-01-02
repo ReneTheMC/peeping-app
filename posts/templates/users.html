@@ -6,7 +6,7 @@
 <div class="mt-1 me-5 bg-white p-3">
     <img style="object-fit: cover;" src="{{ user.profile.avatar.url }}" width="60" height="60" class="rounded-circle">
     <b class="ms-2">{{user.username}}</b>
-    <a class="mt-2 btn btn-primary" href="{% url 'profile' username=user.username %}" style="float: right;">Visit Profile</a>
+    <a class="mt-2 btn btn-primary" href="{% url 'profile' user.username %}" style="float: right;">Visit Profile</a>
 </div>
 
 {% endfor %}

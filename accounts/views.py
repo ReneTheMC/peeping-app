@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.http import Http404
 
 from .forms import UserRegisterForm, EditAvatarForm, EditInformationForm
+from .models import Follow
 from posts.models import Post
 
 
@@ -32,7 +35,10 @@ def profile(request, username):
     for post in posts:
        if post.likes.filter(id=request.user.id).exists():
            already_liked.append(post.id)
-    return render(request, 'profile.html', context={'user':user, 'posts':posts, 'already_liked':already_liked, 'users':users})
+    
+    following = request.user.following
+    check_following = following.filter(follower=user).first()
+    return render(request, 'profile.html', context={'check_following':check_following ,'user':user, 'posts':posts, 'already_liked':already_liked, 'users':users})
 
 
 @login_required
@@ -57,3 +63,22 @@ def edit_profile(request):
         'information_form':information_form
     }
     return render(request, 'edit_profile.html', context)
+
+
+@login_required
+def follow(request, username):
+    user = get_object_or_404(User, username=username)
+    check_user = Follow.objects.filter(follower=user, following=request.user)
+    if check_user.exists():
+        raise Http404
+    else:
+        follow = Follow.objects.create(follower=user, following=request.user)
+        follow.save()
+    return redirect('profile', username=username)
+
+
+@login_required
+def unfollow(request, username):
+    user = get_object_or_404(User, username=username)
+    following = Follow.objects.filter(follower=user).delete()
+    return redirect('profile', username=username)

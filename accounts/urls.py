@@ -9,4 +9,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/',LogoutView.as_view(), name='logout'),
     path('<str:username>/', views.profile, name='profile'),
+    path('follow/<str:username>', views.follow, name='follow'),
+    path('unfollow/<str:username>', views.unfollow, name='unfollow'),
+
 ]
