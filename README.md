@@ -1,6 +1,6 @@
 # Django Social Network
 ![Screenshot 2022-01-03 at 09-07-01 social network django](https://user-images.githubusercontent.com/71011395/147902130-be9dcb31-73a1-4311-99b2-60a37159a185.png)
-
+you can create your account and add a avatar, bio, post. you can like your favorite posts and access to liked posts in your profile, you are also able to follow your friends and make your personal feed.
 
 ## How To Run it:
 1. clone or download the project.
@@ -20,3 +20,4 @@
 - Sqlite3
 
 ## Preview:
+![Peek 2022-01-03 09-20](https://user-images.githubusercontent.com/71011395/147902688-5601eecb-03bf-40a9-8b5f-62b9e436af51.gif)
