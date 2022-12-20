@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'post_card.html' %}
+
+
+
+{% endblock %}
+
+{% block sidebar %}
+<div class="">
+    {% for user in users %}
+    <div class="mt-3">
+        <img style="object-fit: cover;" src="{{ user.profile.avatar.url }}" width="50" height="50" class="rounded-circle">
+        <b class="ms-2">{{user.username}}</b>
+        <a class="mt-2" href="{% url 'profile' user.username %}" style="float: right;">follow</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
