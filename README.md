@@ -6,10 +6,10 @@ Project 4 for GA. An app created with Python and Django
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/ReneTheMC/pod-lovers-backend">
+  <a href="https://github.com/ReneTheMC/peeping-app.git">
     <img src=" https://i.imgur.com/VAvuPtU.png " >
   </a>
-  <h2 align="center">POD LOVERS (Backend)</h2>
+  <h2 align="center">Peeping</h2>
 <br>
 <Br>
 
@@ -23,7 +23,7 @@ Project 4 for GA. An app created with Python and Django
         <li><a href="#built-with">Technologies Used</a></li>
       </ul>
     </li>
-    <li><a href="#Logo">Logo</a></li>
+    <li><a href="#Requirements">requirements</a></li>
     <li><a href="#ERD">ERD</a></li>
     <li><a href="#Wireframes">Wireframes</a></li>
      <li><a href="#future-enhancements">Future Enhancements</a></li>
@@ -35,19 +35,28 @@ Project 4 for GA. An app created with Python and Django
 
 <!-- ABOUT THE PROJECT -->
 # **About The Project**
-The Pod Lovers App is built using GraphQL to access Podchaser API. We used MongoDB for our database with full CRUD operations on the podcast and creator models.  
+The Peeping App is built using Python and Django. Used Bootstrap for styling and templates. SQLite3 for our database with full CRUD operations on the  
 
 The live version of this app can be viewed [here.]()
 
-The frontend GitHub can be found [here.](https://github.com/ReneTheMC/pod-lovers-frontend)
-
 # **Built With**
 * [Heroku](https://dashboard.heroku.com/apps)
-* [GraphQL](https://graphql.org/learn/)
-* [Podchaser](https://www.podchaser.com/)
+* [Python](https://www.python.org/downloads/)
+* [Django](https://www.djangoproject.com/)
+* [Bootstrap](https://getbootstrap.com/)
+* [SQLite3](https://www.sqlite.org/download.html) 
 
-# **Logo**
-* ![Logo](./image/podlogo0.png)
+# **Requirements**
+* 1. clone or download the project.
+* 2. change directory to social-network-django
+* 3. make sure you have python3, pip and virtualenv installed in your   machine.
+* 4. create virtualenv: python3 -m venv venv
+active virtualenv: Mac & Linux os: source venv/bin/activate, Windows os: venv\scripts\activate
+* 5. install app requirements: pip install -r requirements.txt
+* 6. databse migrate: python manage.py migrate
+* 7. run the server: python manage.py runserver
+* 8. you should be able to open this address now: http://127.0.0.1:8000/
+
 
 # **ERD**
 * ![ERD](./image/PodLovers%20ERD.png)
@@ -66,22 +75,4 @@ The frontend GitHub can be found [here.](https://github.com/ReneTheMC/pod-lovers
 * Ability for users to upload their own profile picture through 
 * More Updates to come
 
-# **Authors**
 
-<div align="center">
-  <a href="https://github.com/ruraliz" target="_blank">
-    <img src="https://i.imgur.com/td6nLst.jpg"
-      alt="Contributors"
-      width="15%" />
-  </a>
-    <a href="https://github.com/hninmabalo" target="_blank">
-    <img src="https://i.imgur.com/FMldvPj.jpg"
-      alt="Contributors"
-      width="15%" />
-  </a>
-    <a href="https://github.com/ReneTheMC" target="_blank">
-    <img src="https://i.imgur.com/Vwsw8Y2.jpg"
-      alt="Contributors"
-      width="15%" />
-  </a>
-</div>
