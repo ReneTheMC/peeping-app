@@ -28,7 +28,6 @@ Project 4 for GA. An app created with Python and Django
     <li><a href="#Wireframes">Wireframes</a></li>
      <li><a href="#future-enhancements">Future Enhancements</a></li>
      <li><a href="#credit">Credits</a></li>
-     <li><a href="#authors">Authors</a></li>
 
  </ol>
 </details>
