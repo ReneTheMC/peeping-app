@@ -34,9 +34,12 @@ Project 4 for GA. An app created with Python and Django
 
 <!-- ABOUT THE PROJECT -->
 # **About The Project**
-The Peeping App is built using Python and Django. Used Bootstrap for styling and templates. SQLite3 for our database with full CRUD operations on the  
+The Peeping App is built using Python and Django. Used Bootstrap for styling and templates. SQLite3 for our database with full CRUD operations on the posts and accounts
 
 The live version of this app can be viewed [here.]()
+
+# **User Story**
+This social media app is built to house all of your friends social media account in one place. You get to save and see all the best things about your friends
 
 # **Built With**
 * [Heroku](https://dashboard.heroku.com/apps)
@@ -58,20 +61,12 @@ active virtualenv: Mac & Linux os: source venv/bin/activate, Windows os: venv\sc
 
 
 # **ERD**
-* ![ERD](./image/PodLovers%20ERD.png)
+* ![ERD]
 
 # **Wireframes**
-* Home Page
-* ![Wireframes](./image/Podcasts%20HOME%20page.png)
-* Detail Page
-* ![Wireframes](./image/podcast%20details%20page.png)
-* Favorite List page
-* ![Wireframes](./image/podcast%20favorite%20lists%20page.png)
+
 
 # **Future Enhancements**
-* Ability for users to suggest podcasts to other Users
-* Ability for users to search podcasts by topic/category
-* Ability for users to upload their own profile picture through 
-* More Updates to come
-
-
+*Friends favorites
+*Tailored to your tastes 
+*Add fav songs, sites, shows
