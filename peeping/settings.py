@@ -32,9 +32,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.admin.models.LogEntry',
-    'peeping',
-    'accounts',
-    'posts',
+    'accounts.apps.AccountsConfig',
+    'posts.apps.PostsConfig',
+    'crispy_forms',
 ]
 
 SITE_ID = 1
